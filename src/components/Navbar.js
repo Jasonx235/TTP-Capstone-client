@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import { Input, Menu } from "semantic-ui-react"
 
+import CategoryDropdown from "./CategoryDropdown"
+import AreaDropdown from "./AreaDropdown"
+
 export class Navbar extends Component {
 
     state = { activeItem: 'home' }
@@ -17,23 +20,20 @@ export class Navbar extends Component {
                     active={activeItem === 'home'}
                     onClick={this.handleItemClick}
                 />
-                <Menu.Item
-                    name='messages'
-                    active={activeItem === 'messages'}
-                    onClick={this.handleItemClick}
-                />
-                <Menu.Item
-                    name='friends'
-                    active={activeItem === 'friends'}
-                    onClick={this.handleItemClick}
-                />
                 <Menu.Menu position='right'>
                     <Menu.Item>
                         <Input icon='search' placeholder='Search...' />
+                        <CategoryDropdown />
+                        <AreaDropdown />
                     </Menu.Item>
                     <Menu.Item
                         name='login'
                         active={activeItem === 'login'}
+                        onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                        name='register'
+                        active={activeItem === 'register'}
                         onClick={this.handleItemClick}
                     />
                 </Menu.Menu>
