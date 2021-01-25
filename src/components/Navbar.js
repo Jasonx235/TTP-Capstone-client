@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Input, Menu } from 'semantic-ui-react';
+import { Input, Menu, Form, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { AuthContext } from '../context/auth';
-
-import CategoryDropdown from "./CategoryDropdown"
-import AreaDropdown from "./AreaDropdown"
+import CategoryDropdown from './CategoryDropdown';
+import AreaDropdown from './AreaDropdown';
+import { getRecipes } from '../actions/recipes';
 
 function NavBar() {
 	const { user, logout } = useContext(AuthContext);
+	const [search, setSearch] = useState({ search: '' });
 	const pathname = window.location.pathname;
 
 	let path = pathname === '/' ? 'home' : pathname.substr(1);
@@ -17,8 +19,20 @@ function NavBar() {
 
 	const handleItemClick = (e, { name }) => setActiveItem(name);
 
+	const dispatch = useDispatch();
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		console.log(search);
+		dispatch(getRecipes(search));
+	};
+	const onChange = (e) => {
+		const { name, value } = e.target;
+		setSearch({ ...search, [name]: value });
+	};
+
 	const NavBar = user ? (
-		<Menu pointing secondary size="massive" color="teal">
+		<Menu pointing secondary size="big" color="teal">
 			<Menu.Item name={user.username} active as={Link} to="/" />
 			<Menu.Menu position="right">
 				<Menu.Item name="logout " onClick={logout} />
@@ -33,12 +47,20 @@ function NavBar() {
 				as={Link}
 				to="/"
 			/>
+			<Menu.Item>
+				<Form onSubmit={onSubmit}>
+					<Form.Field>
+						<Form.Input
+							placeholder="Search.."
+							name="search"
+							value={search.search}
+							onChange={onChange}
+						/>
+					</Form.Field>
+					<Button type="submit">Submit</Button>
+				</Form>
+			</Menu.Item>
 			<Menu.Menu position="right">
-				<Menu.Item>
-					<Input icon="search" placeholder="Search..." />
-					<CategoryDropdown />
-					<AreaDropdown />
-				</Menu.Item>
 				<Menu.Item
 					name="register"
 					active={activeItem === 'register'}
