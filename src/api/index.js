@@ -5,6 +5,8 @@ export const searchRecipe = (food) => axios.get(`https://www.themealdb.com/api/j
 export const searchCategory = (item) => axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${item}`);
 export const searchArea = (item) => axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${item}`);
 
+//Random
+export const searchRandom = () => axios.get(`https://www.themealdb.com/api/json/v1/1/random.php`);
 
 
 
