@@ -29,8 +29,8 @@ import AuthRoute from './utils/AuthRoute';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
-// import MenuBar from'./components/MenuBar';
-import NavBar from'./components/NavBar'
+import NavBar from'./components/NavBar';
+import SearchPage from './components/pages/SearchPage'
 
 
 function App() {
@@ -38,11 +38,11 @@ function App() {
     <AuthProvider>
       <Router>
       <Container>
-        {/* <MenuBar /> */}
         <NavBar/>
         <Route exact path='/' component={Home}/>
         <AuthRoute exact path="/login" component={Login}/>
         <AuthRoute exact path="/register" component={Register}/>
+        <Route exact path="/SearchPage" component={SearchPage}/>
       </Container>
     </Router>
     </AuthProvider>

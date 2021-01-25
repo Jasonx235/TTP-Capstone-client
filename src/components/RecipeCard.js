@@ -1,19 +1,16 @@
 import React from 'react';
-// import {Card} from 'semantic-ui-react'
+import { Card, Grid, Image } from 'semantic-ui-react';
 
 function RecipeCard(props) {
-
 	return (
-		<div className="ui link cards">
-			<div className="card">
-				<div className="image">
-					<img src={props.recipeImage} alt="recipeImage" />
-				</div>
-				<div className="content">
-					<div className="header">{props.recipeName}</div>
-				</div>
-			</div>
-		</div>
+		<Grid.Column className="gridColumn">
+			<Card className="cardClass">
+				<img src={props.recipeImage} height={300} />
+				<Card.Content className="cardContent">
+					<Card.Header>{props.recipeName}</Card.Header>
+				</Card.Content>
+			</Card>
+		</Grid.Column>
 	);
 }
 
