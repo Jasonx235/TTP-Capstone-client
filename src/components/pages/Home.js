@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import RecipeCards from '../RecipeCards'
+import RecipeCard from '../RecipeCard';
 
 
 import { AuthContext } from '../../context/auth';
@@ -9,7 +11,9 @@ function Home() {
 
 
 	return (
-		<h1>This is the home page</h1>
+		<>
+		<RecipeCards/>
+		</>
 	);
 }
 

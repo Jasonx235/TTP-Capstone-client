@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/posts";
+//General Search
+export const searchRecipe = (food) => axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${food}`);
+export const searchCategory = (item) => axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${item}`);
+export const searchArea = (item) => axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${item}`);
 
-//where our api calls go
 
-// export const fetchPosts = () => axios.get(url);
-// export const createPost = (newPost) => axios.post(url, newPost);
-// export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
-// export const deletePost = (id) => axios.delete(`${url}/${id}`);
-// export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+
+
+export const singleRecipe = (recipe) => axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipe}`)
+

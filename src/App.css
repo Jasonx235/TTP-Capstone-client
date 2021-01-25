@@ -1,0 +1,8 @@
+.dropdownMenu {
+	overflow: scroll;
+}
+
+.content {
+	height: 48px !important;
+	width: 290px;
+}
