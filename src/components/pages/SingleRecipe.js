@@ -1,85 +1,75 @@
-import React, { Component } from 'react'
-import { Grid, Image } from 'semantic-ui-react'
-import axios from 'axios'
+import React, { Component } from "react";
+import { Grid, Image } from "semantic-ui-react";
+import * as api from "../../api";
+import removeEmpty from "../../utils/DataClean";
+import Ingredients from "../Ingredients";
+import ReactPlayer from "react-player";
 
-export class SingleRecipe extends Component {
-
-    constructor() {
-        super()
-        this.state = {
-            data: []
-        }
-    }
-
-    componentDidMount() {
-        this.getData()
-    }
-
-    removeEmpty3 = () => {
-        let cleanData = [];
-        this.state.data.forEach((meal) => {
-            let temp = {};
-            const mealEntries = Object.entries(meal),
-                [ingredientsArray, measuresArray] = [
-                    "strIngredient",
-                    "strMeasure",
-                ].map((keyName) =>
-                mealEntries
-                    .filter(
-                    ([key, value]) => key.startsWith(keyName) && value && value.trim()
-                    )
-                    .map(([key, value]) => value)
-                );
-        
-            temp["idMeal"] = meal["idMeal"];
-            temp["strInstructions"] = meal["strInstructions"];
-            temp["strMeal"] = meal["strMeal"];
-            temp["strMealThumb"] = meal["strMealThumb"];
-            temp["strSource"] = meal["strSource"];
-            temp["strYoutube"] = meal["strYoutube"];
-            temp["ingredientsArray"] = ingredientsArray;
-            temp["measurementsArray"] = measuresArray;
-            cleanData.push(temp);
-        });
-        this.setState({ cleanData: cleanData });
+class SingleRecipe extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
     };
+  }
 
-    getData = async () => {
-        await axios
-            .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772`)
-            .then((res) => {
-                this.setState({ data: res.data.meals });
-            }, console.log("success"))
-            .catch((err) => console.log("Not successful"));
-        console.log(this.state.data);
-        this.removeEmpty3();
-        console.log(this.state.cleanData);
-    };
+  componentDidMount() {
+    this.getData();
+  }
 
-    render() {
-        return (
-            <Grid>
-                <Grid.Row>
-                    <Grid.Column width={6}>
-                        <Image src={this.state.data.strMealThumb}/>
-                    </Grid.Column>
-                    <Grid.Column width={10}>
-                        {/* title, category, area, ingredients, and measures */}
-                        <h3>{this.state.data.strMeal}</h3>
-                        <p>{this.state.data.strCategory}</p>
-                        <br />
-                        <p>{this.state.data.strArea}</p>
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={16}>
-                        {/* instructions */}
-
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        )
+  getData = async () => {
+    try {
+      const recipeId = this.props.match.params.recipeId;
+      const temp = await api.singleRecipe(recipeId);
+      const cleanData = removeEmpty(temp.data.meals);
+      this.setState({ data: cleanData });
+      console.log(this.state.data);
+    } catch (err) {
+      console.log(err);
     }
+  };
+
+  displayCard = () => {
+    let result = this.state.data;
+    let myData;
+    myData = result.map((recipe) => (
+      <Grid className='detailDisplay' key={recipe.idMeal}>
+        <Grid.Row className='detailDisplayInfo'>
+          <Grid.Column width={6}>
+            <Image src={recipe.strMealThumb} />
+          </Grid.Column>
+          <Grid.Column width={10}>
+            {/* title, category, area, ingredients, and measures */}
+            <h1 className='detailDisplayTitle'>{recipe.strMeal}</h1>
+            <p>
+              Category: {recipe.strCategory}
+              <br />
+              Area: {recipe.strArea}
+              <br />
+              <a href={recipe.strSource}>Source</a>
+            </p>
+            <Ingredients
+              ingredientsArray={recipe.ingredientsArray}
+              measurementsArray={recipe.measurementsArray}
+            />
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row className='detailDisplayInstruction'>
+          <Grid.Column width={16}>
+            {recipe.strInstructions}
+            <br />
+            <br />
+            <ReactPlayer url={recipe.strYoutube} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    ));
+    return myData;
+  };
+  render() {
+    return this.displayCard();
+  }
 }
 
-export default SingleRecipe
+export default SingleRecipe;

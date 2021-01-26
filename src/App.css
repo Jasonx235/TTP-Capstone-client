@@ -1,59 +1,82 @@
+#root {
+  min-width: 750px;
+}
+
 .dropdownMenu {
-	overflow: scroll;
+  overflow: scroll;
 }
 
 .content {
-	height: 48px !important;
-	width: 290px;
+  height: 48px !important;
+  width: 290px;
 }
 
 .searchBarDisplay {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ui.masthead {
-	padding: 10%;
-	background-image: url('http://pic.616pic.com/bg_w1180/00/05/31/sZ1pEZvTT8.jpg!/fw/1120') !important;
-	background-repeat: no-repeat !important;
-	background-size: 100% !important;
-	width: 100% !important;
+  padding: 10%;
+  background-image: url("http://pic.616pic.com/bg_w1180/00/05/31/sZ1pEZvTT8.jpg!/fw/1120") !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% !important;
+  width: 100% !important;
 }
 
 .cardClass {
-	margin-bottom: 25px !important;
-	margin-left: 40px !important;
-	margin-right: 40px !important;
+  margin-bottom: 25px !important;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
 }
 
 .cardContent {
-	display: flex;
-	height: 100px !important;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+  display: flex;
+  height: 100px !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #searchResults {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .gridColumn {
-	display: flex;
-	justify-content: center;
-	padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  padding: 0 !important;
 }
 
 .center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .margin {
-	margin-left: 10px;
-	margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+h2 {
+  text-align: center;
+}
+
+.detailDisplay {
+  padding: 60px;
+}
+
+.detailDisplayInfo {
+  padding: 40px;
+}
+
+.detailDisplayTitle {
+  font-size: 40px;
+}
+
+.detailDisplayInstruction {
+  padding: 50px;
 }
