@@ -1,18 +1,22 @@
-import React, { useContext } from 'react';
-import RecipeCards from '../RecipeCards';
-import RecipeCard from '../RecipeCard';
-import NavBar from '../../components/NavBar';
+import React, { useContext } from "react";
+import RecipeCards from "../RecipeCards";
 
-import { AuthContext } from '../../context/auth';
+import SearchBar from "../SearchBar";
+
+import { AuthContext } from "../../context/auth";
 
 function Search() {
-	const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-	return (
-		<div id="searchResults">
-			<RecipeCards />
-		</div>
-	);
+  return (
+    <>
+      <SearchBar />
+      <h2>Search Results</h2>
+      <div id='searchResults'>
+        <RecipeCards />
+      </div>
+    </>
+  );
 }
 
 export default Search;

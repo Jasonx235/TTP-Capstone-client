@@ -31,6 +31,8 @@ import Register from "./components/pages/Register";
 import NavBar from "./components/NavBar";
 import SearchPage from "./components/pages/SearchPage";
 import SingleRecipe from "./components/pages/SingleRecipe";
+import Collection from "./components/pages/Collection";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -41,8 +43,10 @@ function App() {
           <Route exact path='/' component={Home} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register' component={Register} />
+          <Route exact path='/collection' component={Collection} />
           <Route exact path='/result' component={SearchPage} />
           <Route exact path='/result/:recipeId' component={SingleRecipe} />
+          <Footer />
         </Container>
       </Router>
     </AuthProvider>

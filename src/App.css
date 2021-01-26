@@ -1,5 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
+
+html {
+  height: 100%;
+}
+
 #root {
   min-width: 750px;
+  min-height: 100%;
+  background: linear-gradient(to bottom, #fffcf8 0%, #ffe6c3 100%);
+}
+
+.logo {
+  font-family: "Megrim", cursive;
+  font-size: larger;
 }
 
 .dropdownMenu {
@@ -79,4 +92,60 @@ h2 {
 
 .detailDisplayInstruction {
   padding: 50px;
+  font-size: large;
+}
+
+.formFormat {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 600px;
+  font-size: 16px;
+}
+
+button {
+  color: black;
+  height: 43px;
+  background-image: linear-gradient(
+    135deg,
+    #fff5e1 0%,
+    #ffcc8a 37%,
+    #fcd98d 100%
+  ) !important;
+}
+
+.singleRecipeImage {
+  border: 18px solid transparent;
+  border-image: url("https://www.seekpng.com/png/full/99-990217_transparent-wave-orange-border-no-background.png")
+    20 stretch;
+  border-radius: 30px;
+  padding: 0px;
+}
+
+.footer {
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #fffcf8;
+  margin-top: 80px;
+}
+
+.footerNames {
+  margin: 0px 10px 0px 10px;
+  padding: 0 !important;
+}
+
+#homeLogo {
+  font-family: "Megrim", cursive;
+}
+
+.form-container {
+  width: 400px;
+  margin: auto;
 }

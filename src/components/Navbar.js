@@ -1,81 +1,59 @@
 import React, { useContext, useState } from "react";
-import { Menu, Form, Button } from "semantic-ui-react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Menu } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 import { AuthContext } from "../context/auth";
-import CategoryDropdown from "./CategoryDropdown";
-import AreaDropdown from "./AreaDropdown";
-import { getRecipes } from "../actions/recipes";
 
 function NavBar(props) {
   const { user, logout } = useContext(AuthContext);
-  const [search, setSearch] = useState({ search: "" });
+
   const pathname = window.location.pathname;
 
-  const history = useHistory();
-
-  let path = pathname === "/" ? "home" : pathname.substr(1);
+  let path = pathname === "/" ? "Food Mood" : pathname.substr(1);
 
   const [activeItem, setActiveItem] = useState(path);
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
 
-  const dispatch = useDispatch();
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    console.log(search);
-    await dispatch(getRecipes(search));
-    history.push("/result");
-  };
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setSearch({ ...search, [name]: value });
-  };
-
   const NavBar = user ? (
-    <Menu pointing secondary size='big' color='teal'>
-      <Menu.Item name={user.username} active as={Link} to='/' />
-      <Menu.Item>
-        <Form className='searchBarDisplay' onSubmit={onSubmit}>
-          <Form.Field>
-            <Form.Input
-              placeholder='Search..'
-              name='search'
-              value={search.search}
-              onChange={onChange}
-            />
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-        </Form>
-      </Menu.Item>
+    <Menu pointing secondary size='massive' color='orange'>
+      <Menu.Item
+        className='logo'
+        name='Food Mood'
+        active={activeItem === "Food Mood"}
+        as={Link}
+        to='/'
+        onClick={handleItemClick}
+      />
       <Menu.Menu position='right'>
-        <Menu.Item name='logout ' onClick={logout} />
+        <Menu.Item
+          name='collection'
+          position='right'
+          active={activeItem === "collection"}
+          onClick={handleItemClick}
+          as={Link}
+          to='/collection'
+        />
+        <Menu.Item
+          name='logout '
+          onClick={logout}
+          position='right'
+          as={Link}
+          to='/'
+        />
       </Menu.Menu>
     </Menu>
   ) : (
-    <Menu pointing secondary size='massive' color='teal'>
+    <Menu pointing secondary size='massive' color='orange'>
       <Menu.Item
-        name='home'
-        active={activeItem === "home"}
+        className='logo'
+        name='Food Mood'
+        active={activeItem === "Food Mood"}
         onClick={handleItemClick}
         as={Link}
         to='/'
       />
-      <Menu.Item>
-        <Form onSubmit={onSubmit}>
-          <Form.Field>
-            <Form.Input
-              placeholder='Search..'
-              name='search'
-              value={search.search}
-              onChange={onChange}
-            />
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-        </Form>
-      </Menu.Item>
+
       <Menu.Menu position='right'>
         <Menu.Item
           name='register'
@@ -84,6 +62,7 @@ function NavBar(props) {
           as={Link}
           to='/register'
         />
+
         <Menu.Item
           name='login'
           active={activeItem === "login"}
