@@ -18,7 +18,7 @@ function RecipeCard(props) {
             {props.recipeName}
           </Card.Header>
         </Card.Content>
-        <Card.Content extra>
+        <Card.Content extra className='cardExtraContent'>
           <Button
             color='orange'
             content='Add to Collections'
