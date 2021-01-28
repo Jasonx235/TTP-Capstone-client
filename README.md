@@ -12,3 +12,5 @@ Built using:
 - React.js
 - Redux.js
 - semantic-ui
+
+![screenshot](https://github.com/Jasonx235/GameStore/blob/main/foodmood.png)
