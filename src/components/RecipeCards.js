@@ -16,6 +16,7 @@ const RecipeCards = () => {
           recipeImage={recipe.strMealThumb}
           recipeName={recipe.strMeal}
           idMeal={recipe.idMeal}
+          added={false}
           key={recipe.idMeal}
         />
       ));

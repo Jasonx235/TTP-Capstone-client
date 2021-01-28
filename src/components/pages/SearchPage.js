@@ -1,13 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import RecipeCards from "../RecipeCards";
 
 import SearchBar from "../SearchBar";
 
-import { AuthContext } from "../../context/auth";
-
 function Search() {
-  const { user } = useContext(AuthContext);
-
   return (
     <>
       <SearchBar />

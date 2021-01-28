@@ -1,23 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
+import { getData } from "../../actions/collection";
 import { AuthContext } from "../../context/auth";
-import RecipeCards from "../RecipeCards";
 import { FETCH_COLLECTIONS_QUERY } from "../../utils/graphql";
+import SubCollection from "../SubCollection";
 
-function User() {
+function Collection() {
   const { user } = useContext(AuthContext);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [recipeData, setMyData] = useState([]);
+  if (!user) {
+    history.push("/");
+  }
+  useEffect(() => {
+    dispatch(getData(myData));
+    setMyData(myData);
+  }, []);
+
   const { loading, data: { getCollections: collections } = {} } = useQuery(
     FETCH_COLLECTIONS_QUERY
   );
-  console.log(collections);
-  // let test = collections[0].body.recipe[0].body;
-  // console.log(test);
-  return (
-    <div>
-      <h1>Hello</h1>
-    </div>
-  );
+
+  const ParseData = () => {
+    let parsedData = [];
+    collections &&
+      collections.forEach((collection) => {
+        let temp = {};
+        temp["collectionName"] = collection.body;
+        temp["recipeArray"] = collection.recipes;
+        parsedData.push(temp);
+      });
+    return parsedData;
+  };
+
+  let myData = ParseData();
+
+  console.log(recipeData);
+  const displayCollection = () => {
+    let display = recipeData.map((collection) => (
+      <SubCollection collection={collection} key={collection.collectionName} />
+    ));
+    return display;
+  };
+
+  return <div>{loading ? <h1>Loading...</h1> : displayCollection()}</div>;
 }
 
-export default User;
+export default Collection;

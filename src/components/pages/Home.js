@@ -1,15 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 
 import SearchBar from "../SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { getRandoms } from "../../actions/random";
 import RecipeCard from "../RecipeCard";
-import { AuthContext } from "../../context/auth";
 
 function Home() {
-  const { user } = useContext(AuthContext);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRandoms());

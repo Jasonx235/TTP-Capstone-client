@@ -6,8 +6,12 @@ html {
 
 #root {
   min-width: 750px;
-  min-height: 100%;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #fffcf8 0%, #ffe6c3 100%);
+}
+
+.page-content {
+  min-height: 100vh;
 }
 
 .logo {
@@ -24,17 +28,12 @@ html {
   width: 290px;
 }
 
-.searchBarDisplay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .ui.masthead {
   padding: 10%;
-  background-image: url("./dPYVR8LdYy.jpg") !important;
+  background-image: url("./images/dPYVR8LdYy.jpg") !important;
   background-repeat: no-repeat !important;
-  background-size: 100% !important;
+  background-size: 100% 102% !important;
+  background-position: center;
   width: 100% !important;
 }
 
@@ -53,7 +52,10 @@ html {
 }
 
 .cardExtraContent {
-  height: 100px !important;
+  height: 65px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #searchResults {
@@ -99,7 +101,7 @@ h2 {
   font-size: large;
 }
 
-.formFormat {
+.searchBarDisplay {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
@@ -132,12 +134,14 @@ button {
 .footer {
   width: 100%;
   position: relative;
+  left: 0;
+  right: 0;
   bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #fffcf8;
   margin-top: 80px;
+  padding-bottom: 30px;
 }
 
 .footerNames {

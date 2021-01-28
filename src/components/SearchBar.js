@@ -28,11 +28,7 @@ export default function SearchBar() {
   };
   const SearchBar = (
     <>
-      <Form
-        className='searchBarDisplay'
-        onSubmit={onSubmit}
-        className='formFormat'
-      >
+      <Form className='searchBarDisplay' onSubmit={onSubmit}>
         <Form.Field>
           <Form.Input
             className='input'
