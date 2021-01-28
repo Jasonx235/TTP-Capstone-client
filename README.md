@@ -13,4 +13,4 @@ Built using:
 - Redux.js
 - semantic-ui
 
-![screenshot](https://github.com/Jasonx235/GameStore/blob/main/foodmood.png)
+![screenshot](https://github.com/Jasonx235/TTP-Capstone-client/blob/main/foodmood.png)
